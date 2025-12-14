@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecycleRadar Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #111;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .presentation {
+            display: flex;
+            height: 100vh;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-y: auto;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-title {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .slide-subtitle {
+            font-size: 1.8em;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .slide-content {
+            font-size: 1.3em;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .slide-content ul {
+            margin-left: 40px;
+        }
+
+        .slide-content li {
+            margin-bottom: 20px;
+        }
+
+        .slide-content strong {
+            font-weight: 700;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        .control-buttons {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        button {
+            padding: 12px 30px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .highlight {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active">
+            <h1 class="slide-title">♻️ RecycleRadar</h1>
+            <h2 class="slide-subtitle">Location-Based Recycling Center Finder</h2>
+            <div class="slide-content">
+                <p style="font-size: 1.2em; margin-top: 40px;">Front-End Web Development Laboratory (ACSE04)</p>
+                <p style="font-size: 1.2em;">Institute of Aeronautical Engineering, Hyderabad</p>
+                <p style="font-size: 1.1em; opacity: 0.8; margin-top: 40px;">Presented as a comprehensive solution to environmental sustainability challenges</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Problem Statement -->
+        <div class="slide">
+            <h1 class="slide-title">🌍 The Problem</h1>
+            <div class="slide-content">
+                <div class="feature-box">
+                    <p><span class="emoji">📍</span><strong>Information Fragmentation</strong><br>Recycling facility information scattered across multiple sources</p>
+                </div>
+                <div class="feature-box">
+                    <p><span class="emoji">⏰</span><strong>Time-Consuming Searches</strong><br>Users spend excessive time finding appropriate recycling options</p>
+                </div>
+                <div class="feature-box">
+                    <p><span class="emoji">🤔</span><strong>Material Uncertainty</strong><br>Confusion about which facilities accept specific materials</p>
+                </div>
+                <div class="feature-box">
+                    <p><span class="emoji">🌱</span><strong>Low Participation</strong><br>Barriers to recycling reduce environmental participation</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Solution Overview -->
+        <div class="slide">
+            <h1 class="slide-title">✨ Our Solution</h1>
+            <div class="slide-content">
+                <p style="margin-bottom: 30px;">RecycleRadar provides an integrated platform for discovering and accessing recycling facilities.</p>
+                <div class="feature-box">
+                    <p><span class="emoji">📱</span><strong>Unified Platform</strong> - All recycling information in one accessible location</p>
+                </div>
+                <div class="feature-box">
+                    <p><span class="emoji">🗺️</span><strong>Location-Based Discovery</strong> - Find facilities near you instantly</p>
+                </div>
+                <div class="feature-box">
+                    <p><span class="emoji">🎯</span><strong>Smart Filtering</strong> - Search by material type, distance, and amenities</p>
+                </div>
+                <div class="feature-box">
+                    <p><span class="emoji">📚</span><strong>Educational Integration</strong> - Learn proper recycling practices</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Key Features -->
+        <div class="slide">
+            <h1 class="slide-title">🚀 Core Features</h1>
+            <div class="slide-content">
+                <ul>
+                    <li><strong>Geolocation Detection</strong> - Automatic user location identification</li>
+                    <li><strong>Interactive Map Display</strong> - Visual facility mapping and marker placement</li>
+                    <li><strong>Material-Based Search</strong> - Filter by plastic, metal, paper, glass, electronics, organic</li>
+                    <li><strong>Detailed Information Panels</strong> - Hours, contact, amenities, ratings</li>
+                    <li><strong>Distance Calculations</strong> - Find nearest recycling centers</li>
+                    <li><strong>Educational Resources</strong> - Integrated recycling guidelines</li>
+                    <li><strong>Responsive Design</strong> - Perfect on mobile, tablet, and desktop</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 5: Technical Architecture -->
+        <div class="slide">
+            <h1 class="slide-title">⚙️ Technical Stack</h1>
+            <div class="slide-content">
+                <div class="two-column">
+                    <div>
+                        <h3 style="font-size: 1.5em; margin-bottom: 20px;">Frontend Technologies</h3>
+                        <div class="feature-box">
+                            <p><strong>HTML5</strong> - Semantic structure & accessibility</p>
+                        </div>
+                        <div class="feature-box">
+                            <p><strong>CSS3</strong> - Responsive layouts & animations</p>
+                        </div>
+                        <div class="feature-box">
+                            <p><strong>JavaScript ES6+</strong> - Dynamic functionality</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.5em; margin-bottom: 20px;">Key APIs & Tools</h3>
+                        <div class="feature-box">
+                            <p><strong>Geolocation API</strong> - User location detection</p>
+                        </div>
+                        <div class="feature-box">
+                            <p><strong>LocalStorage</strong> - Data persistence</p>
+                        </div>
+                        <div class="feature-box">
+                            <p><strong>JSON</strong> - Data structuring</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: System Architecture -->
+        <div class="slide">
+            <h1 class="slide-title">🏗️ System Architecture</h1>
+            <div class="slide-content">
+                <div class="feature-box">
+                    <p><strong>Data Layer</strong><br>Recycling center database with location, materials, hours, amenities</p>
+                </div>
+                <div class="feature-box">
+                    <p><strong>Business Logic Layer</strong><br>Filtering algorithms, distance calculations, search functionality</p>
+                </div>
+                <div class="feature-box">
+                    <p><strong>Presentation Layer</strong><br>Map visualization, facility cards, filter controls, info panels</p>
+                </div>
+                <p style="margin-top: 30px; font-size: 1.1em;">All functionality implemented client-side using modern JavaScript ES6+ patterns</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Implementation Highlights -->
+        <div class="slide">
+            <h1 class="slide-title">💻 Code Implementation</h1>
+            <div class="slide-content">
+                <p style="margin-bottom: 20px;">Search and Filtering Algorithm:</p>
+                <div class="code-block">
+function searchRecyclingCenters() {<br/>
+&nbsp;&nbsp;const searchTerm = document.getElementById('search').value;<br/>
+&nbsp;&nbsp;const material = document.getElementById('material').value;<br/>
+&nbsp;&nbsp;let results = centers.filter(c => {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return c.name.includes(searchTerm) &&<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(material === '' || c.materials.includes(material));<br/>
+&nbsp;&nbsp;});<br/>
+&nbsp;&nbsp;displayResults(results);<br/>
+}
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Challenges & Solutions -->
+        <div class="slide">
+            <h1 class="slide-title">🛠️ Challenges Encountered</h1>
+            <div class="slide-content">
+                <div class="feature-box">
+                    <p><strong>Challenge:</strong> Geolocation Accuracy<br>
+                    <strong>Solution:</strong> Dual-approach with high-accuracy geolocation + manual fallback</p>
+                </div>
+                <div class="feature-box">
+                    <p><strong>Challenge:</strong> Complex Data Filtering<br>
+                    <strong>Solution:</strong> Optimized JS algorithms with client-side processing</p>
+                </div>
+                <div class="feature-box">
+                    <p><strong>Challenge:</strong> Responsive Map Display<br>
+                    <strong>Solution:</strong> CSS media queries + resize event listeners</p>
+                </div>
+                <div class="feature-box">
+                    <p><strong>Challenge:</strong> Information Density<br>
+                    <strong>Solution:</strong> Progressive disclosure pattern</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Testing & Validation -->
+        <div class="slide">
+            <h1 class="slide-title">✅ Testing & Validation</h1>
+            <div class="slide-content">
+                <div class="feature-box">
+                    <p><strong>Functionality Testing</strong> - Geolocation, search, filtering, data persistence</p>
+                </div>
+                <div class="feature-box">
+                    <p><strong>Device Testing</strong> - Desktop, tablet, mobile optimization</p>
+                </div>
+                <div class="feature-box">
+                    <p><strong>Browser Compatibility</strong> - Chrome, Firefox, Safari, Edge</p>
+                </div>
+                <div class="feature-box">
+                    <p><strong>Accessibility Compliance</strong> - WCAG 2.1 standards, color contrast, keyboard navigation</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Course Modules Applied -->
+        <div class="slide">
+            <h1 class="slide-title">📚 Syllabus Coverage</h1>
+            <div class="slide-content">
+                <ul>
+                    <li><strong>HTML5 Semantic Elements</strong> - header, nav, main, section, article</li>
+                    <li><strong>CSS3 Features</strong> - Flexbox, Grid, media queries, animations</li>
+                    <li><strong>JavaScript Event Handling</strong> - Click, input, form submission events</li>
+                    <li><strong>DOM Manipulation</strong> - Dynamic element creation and updates</li>
+                    <li><strong>Asynchronous Programming</strong> - Geolocation API callbacks</li>
+                    <li><strong>Responsive Design</strong> - Mobile-first approach</li>
+                    <li><strong>Client-Side Storage</strong> - LocalStorage persistence</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 11: Future Enhancements -->
+        <div class="slide">
+            <h1 class="slide-title">🚀 Future Roadmap</h1>
+            <div class="slide-content">
+                <div class="feature-box">
+                    <p><strong>Backend Integration</strong> - Real-time IoT sensor data, user accounts</p>
+                </div>
+                <div class="feature-box">
+                    <p><strong>Mobile App</strong> - React Native or Flutter native applications</p>
+                </div>
+                <div class="feature-box">
+                    <p><strong>AI/ML Features</strong> - Personalized recommendations, pattern analysis</p>
+                </div>
+                <div class="feature-box">
+                    <p><strong>Community Features</strong> - User reviews, facility ratings, sustainability tracking</p>
+                </div>
+                <div class="feature-box">
+                    <p><strong>Global Expansion</strong> - Multi-language support, international database</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Environmental Impact -->
+        <div class="slide">
+            <h1 class="slide-title">🌱 Environmental Impact</h1>
+            <div class="slide-content">
+                <p style="margin-bottom: 30px; font-size: 1.2em;">RecycleRadar contributes to:</p>
+                <div class="feature-box">
+                    <p><span class="emoji">♻️</span><strong>Increased Recycling Participation</strong> - Easy facility discovery encourages participation</p>
+                </div>
+                <div class="feature-box">
+                    <p><span class="emoji">🌍</span><strong>Reduced Landfill Waste</strong> - Proper material segregation improves waste management</p>
+                </div>
+                <div class="feature-box">
+                    <p><span class="emoji">💚</span><strong>UN Sustainable Development Goal 12</strong> - Responsible consumption and production</p>
+                </div>
+                <div class="feature-box">
+                    <p><span class="emoji">📈</span><strong>Behavioral Change</strong> - Education integration promotes sustainable practices</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Conclusion -->
+        <div class="slide">
+            <h1 class="slide-title">🎯 Conclusion</h1>
+            <div class="slide-content">
+                <p style="font-size: 1.2em; margin-bottom: 30px;">RecycleRadar successfully demonstrates:</p>
+                <ul>
+                    <li><strong>Client-side sufficiency</strong> - Complex functionality without backend</li>
+                    <li><strong>Responsive excellence</strong> - Seamless adaptation across devices</li>
+                    <li><strong>Accessibility commitment</strong> - Inclusive design for all users</li>
+                    <li><strong>Real-world impact</strong> - Technology addressing environmental challenges</li>
+                </ul>
+                <p style="margin-top: 40px; font-size: 1.2em; font-weight: 600;">A practical tool promoting sustainable waste management and environmental stewardship</p>
+            </div>
+        </div>
+
+        <!-- Slide 14: Thank You -->
+        <div class="slide">
+            <h1 class="slide-title">Thank You!</h1>
+            <div class="slide-content">
+                <p style="font-size: 1.8em; margin-bottom: 30px;">Questions?</p>
+                <p style="font-size: 1.3em;">Visit: <span class="highlight">recycleradar.local</span></p>
+                <p style="font-size: 1.3em;">Contact: Department of CSE (AI&ML)</p>
+                <p style="font-size: 1.3em; margin-top: 40px; opacity: 0.8;">Institute of Aeronautical Engineering, Hyderabad</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">14</span>
+    </div>
+
+    <div class="control-buttons">
+        <button onclick="previousSlide()">← Previous</button>
+        <button onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            document.getElementById('currentSlide').textContent = n + 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
